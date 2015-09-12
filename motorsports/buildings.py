@@ -36,7 +36,13 @@ class BaseBuilding(object):
 
 class Garage(BaseBuilding):
 
-    vehicles = []
+    def __init__(self, *params):
+        self._vehicles = []
+        super(Garage, self).__init__(*params)
+
+    @property
+    def vehicles(self):
+        return self._vehicles
 
     def enter(self, vehicle):
         """
@@ -83,5 +89,5 @@ if __name__ == '__main__':
     g = Garage("Al's Garage")
     c = Car('silver', 'Porsche', 'Boxster')
     g.enter(c)
-    g.exit(c)
+    print len(g)
 

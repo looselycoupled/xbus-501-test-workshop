@@ -34,82 +34,90 @@ from motorsports.buildings import Car, BaseVehicle
 
 class VehicleTests(unittest.TestCase):
 
-    @skip('pending test code')
     def test_description(self):
         """
         Ensure the car description return a string of: "color, make model"
         """
-        pass
+        color = 'white'
+        make = 'Ford'
+        model = 'Bronco'
+        c = Car(color, make, model)
+        self.assertEquals(c.description, '{} {} {}'.format(color, make, model))
 
-    @skip('pending test code')
     def test_initial_state_is_stopped(self):
         """
         Ensure the a car's initial state is "stopped"
         """
-        pass
+        c = Car('Black', 'BMW', '335i')
+        self.assertEquals('stopped', c.state)
 
-    @skip('pending test code')
     def test_state_after_start(self):
         """
         Ensure the car's state is "started" after using start method
         """
-        pass
+        c = Car('Black', 'BMW', '335i')
+        c.start()
+        self.assertEquals('started', c.state)
 
-    @skip('pending test code')
     def test_state_after_stop(self):
         """
         Ensure the car's state is "stopped" after using shutdown method
         """
-        pass
+        c = Car('Black', 'BMW', '335i')
+        c.start()
+        c.shutdown()
+        self.assertEquals('stopped', c.state)
 
-    @skip('pending test code')
     def test_str_builtin(self):
         """
         Ensure the car evaluates to a string of
         "I am a <car color>, <car make>, <car model>."
         """
-        pass
+        color = 'white'
+        make = 'Ford'
+        model = 'Bronco'
+        c = Car(color, make, model)
+        self.assertEquals(str(c), 'I am a {} {} {}.'.format(color, make, model))
 
-    @skip('pending test code')
     def test_color_requirement(self):
         """
         Ensure the car requires a color argument during instantiation
         """
-        pass
+        make = 'Ford'
+        model = 'Bronco'
+        with self.assertRaises(TypeError) as context:
+            c = Car(make=make, model=model)
 
-    @skip('pending test code')
-    def test_color_requirement(self):
-        """
-        Ensure the car requires a color argument during instantiation
-        """
-        pass
-
-    @skip('pending test code')
     def test_make_requirement(self):
         """
         Ensure the car requires a make argument during instantiation
         """
-        pass
+        color = 'red'
+        model = 'Bronco'
+        with self.assertRaises(TypeError) as context:
+            c = Car(color=color, model=model)
 
-    @skip('pending test code')
     def test_model_requirement(self):
         """
         Ensure the car requires a model argument during instantiation
         """
-        pass
+        color = 'red'
+        make = 'Ford'
+        with self.assertRaises(TypeError) as context:
+            c = Car(make=make, color=color)
 
-    @skip('pending test code')
     def test_state_read_only(self):
         """
         Ensure the car state attribute is read only and throws
         AttributeError if someone tries to assign a value directly
         """
-        pass
+        c = Car('Black', 'BMW', '335i')
+        with self.assertRaises(AttributeError) as context:
+            c.state = 'foo'
 
-    @skip('pending test code')
     def test_car_is_a_vehicle(self):
         """
         Ensure a car object is also an instance of BaseVehicle
         """
-        pass
-
+        c = Car('Black', 'BMW', '335i')
+        self.assertIsInstance(c, BaseVehicle)

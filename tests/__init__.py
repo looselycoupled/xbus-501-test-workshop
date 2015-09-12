@@ -10,7 +10,7 @@ class InitializationTests(unittest.TestCase):
         try:
             import motorsports
         except ImportError:
-            self.fail("Was not able to import the motorsports")
+            self.fail("Was not able to import motorsports")
 
     def test_import_buildings(self):
         """
@@ -19,11 +19,13 @@ class InitializationTests(unittest.TestCase):
         try:
             import motorsports.buildings
         except ImportError:
-            self.fail("Was not able to import the motorsports")
+            self.fail("Was not able to import the buildings module")
 
-    @skip("pending test code")
     def test_import_vehicles(self):
         """
         Ensure the test suite can import the vehicles module
         """
-        pass
+        try:
+            import motorsports.vehicles
+        except ImportError:
+            self.fail("Was not able to import the vehicles module")
