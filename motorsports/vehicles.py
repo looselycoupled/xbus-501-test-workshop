@@ -18,7 +18,6 @@ A module to supply building related classes
 ##########################################################################
 
 
-
 ##########################################################################
 ## Classes
 ##########################################################################
@@ -78,7 +77,7 @@ class Car(BaseVehicle):
         Starts the vehicle
         """
         super(Car, self).start()
-        print 'vroom'
+        print('vroom')
 
 
 ##########################################################################
@@ -87,6 +86,6 @@ class Car(BaseVehicle):
 
 if __name__ == '__main__':
     c = Car('white', 'Ford', 'Bronco')
-    print c.state
+    print(c.state)
     c.start()
-    print c.state
+    print(c.state)

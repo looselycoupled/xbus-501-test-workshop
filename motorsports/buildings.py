@@ -17,7 +17,7 @@ A module to supply building related classes
 ## Imports
 ##########################################################################
 
-from vehicles import BaseVehicle, Car
+from motorsports.vehicles import BaseVehicle, Car
 
 ##########################################################################
 ## Classes
@@ -50,7 +50,7 @@ class Garage(BaseBuilding):
         """
         if isinstance(vehicle, BaseVehicle):
             self.vehicles.append(vehicle)
-            print 'The {} has been parked in {}.'.format(vehicle.description, self.name)
+            print('The {} has been parked in {}.'.format(vehicle.description, self.name))
         else:
             raise TypeError('Only vehicles are allowed in garages')
 
@@ -62,7 +62,7 @@ class Garage(BaseBuilding):
             if vehicle not in self:
                 raise LookupError('That vehicle is not in {}.'.format(self.name))
             self.vehicles.remove(vehicle)
-            print 'The {} has left {}.'.format(vehicle.description, self.name)
+            print('The {} has left {}.'.format(vehicle.description, self.name))
 
         else:
             raise TypeError('Only vehicles are allowed in garages.')
@@ -89,5 +89,4 @@ if __name__ == '__main__':
     g = Garage("Al's Garage")
     c = Car('silver', 'Porsche', 'Boxster')
     g.enter(c)
-    print len(g)
-
+    g.exit(c)
