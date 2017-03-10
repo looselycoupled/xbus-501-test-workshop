@@ -72,6 +72,9 @@ class GarageTests(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             g.enter(c)
 
+        with self.assertRaises(TypeError) as context:
+            g.enter(42)
+
     def test_only_allows_cars_to_exit(self):
         """
         Ensure the garage raises TypeError if non vehicle attempts to exit
@@ -125,8 +128,8 @@ class GarageTests(unittest.TestCase):
         c2 = Car('black', 'Toyota', 'Camry')
         g.enter(c1)
         g.enter(c2)
-        self.assertIn(c1, g)
-        self.assertIn(c2, g)
+        for car in g:
+            self.assertIn(car, g)
 
     def test_len_builtin(self):
         """
