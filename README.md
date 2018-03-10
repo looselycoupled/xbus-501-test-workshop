@@ -19,6 +19,10 @@ Next, install the project dependencies using `pip` and the supplied `requirement
 Tests
 -----
 
-To execute the tests, use the following command:
+To execute the tests using the `nose` package test runner, use the following command:
 
     nosetests -v --with-coverage --cover-package=motorsports --cover-inclusive --cover-erase tests
+
+Alternatively, you can use the `unittest` test runner by using the following:
+
+    python -m unittest discover tests/
