@@ -1,6 +1,12 @@
 # motorsports.buildings
 # description
 #
+# Sample Usage:
+#    g = Garage("Al's Garage")
+#    c = Car('silver', 'Porsche', 'Boxster')
+#    g.enter(c)
+#    g.exit(c)
+#
 # Author:   Allen Leis <allen.leis@georgetown.edu>
 # Created:  Fri Sep 11 23:22:32 2015 -0400
 #
@@ -33,23 +39,18 @@ class BaseBuilding(object):
         return self._name
 
 
-
 class Garage(BaseBuilding):
 
-    def __init__(self, *params):
+    def __init__(self, *args, **kwargs):
         self._vehicles = []
-        super(Garage, self).__init__(*params)
-
-    @property
-    def vehicles(self):
-        return self._vehicles
+        super(Garage, self).__init__(*args, **kwargs)
 
     def enter(self, vehicle):
         """
         Adds a new vehicle to the garage
         """
         if isinstance(vehicle, BaseVehicle):
-            self.vehicles.append(vehicle)
+            self._vehicles.append(vehicle)
             print('The {} has been parked in {}.'.format(vehicle.description, self.name))
         else:
             raise TypeError('Only vehicles are allowed in garages')
@@ -61,7 +62,7 @@ class Garage(BaseBuilding):
         if isinstance(vehicle, BaseVehicle):
             if vehicle not in self:
                 raise LookupError('That vehicle is not in {}.'.format(self.name))
-            self.vehicles.remove(vehicle)
+            self._vehicles.remove(vehicle)
             print('The {} has left {}.'.format(vehicle.description, self.name))
 
         else:
@@ -71,22 +72,11 @@ class Garage(BaseBuilding):
         """
         Python builtin to support len function
         """
-        return len(self.vehicles)
+        return len(self._vehicles)
 
     def __iter__(self):
         """
         Python builtin to support iteration
         """
-        for v in self.vehicles:
+        for v in self._vehicles:
             yield v
-
-
-##########################################################################
-## Execution
-##########################################################################
-
-if __name__ == '__main__':
-    g = Garage("Al's Garage")
-    c = Car('silver', 'Porsche', 'Boxster')
-    g.enter(c)
-    g.exit(c)
